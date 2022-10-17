@@ -7,9 +7,8 @@
   
 2、安装 python 环境  
   
-``conda create env=$name python=2.7  
-  conda install tensorflow=1.12
-``  
+`conda create env=$name python=2.7`  
+`conda install tensorflow=1.12`  
   
 3、安装 bazel 0.14.1  
   
@@ -19,14 +18,13 @@
   
 4、修改 configure.py  
   
-``check_bazel_version('0.15.0') -> check_bazel_version('0.14.0')``  
+`check_bazel_version('0.15.0') -> check_bazel_version('0.14.0')`  
   
 5、修改 WORKSPACE  
   
-``check_bazel_version_at_least("0.15.0") -> check_bazel_version_at_least("0.14.0")``  
+`check_bazel_version_at_least("0.15.0") -> check_bazel_version_at_least("0.14.0")`  
   
 ## 编译
   
-``./configure
-  bazel build --verbose_failures --config=opt //tensorflow/tools/pip_package:build_pip_package
-``  
+`./configure`  
+`bazel build --verbose_failures --config=opt //tensorflow/tools/pip_package:build_pip_package`    
