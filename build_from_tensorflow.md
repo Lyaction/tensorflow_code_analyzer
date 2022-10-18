@@ -1,5 +1,6 @@
-# build tensorflow from source
+# tensorflow 编译记录
   
+build tensorflow from source.  
 记录 mac osx 环境下构建 tensorflow 源码的过程  
   
 ## 准备工作
@@ -50,4 +51,8 @@
   
 安装所有缺失的依赖 `pip install XXX or conda install XXX`  
   
-If success, Congratulations!  
+4、测试  
+  
+`cd ~; python -c "import tensorflow as tf; hello = tf.constant('Hello, TensorFlow!'); sess = tf.Session(); print(sess.run(hello))"`  
+  
+`If success, Congratulations!`  
