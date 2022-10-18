@@ -1,4 +1,7 @@
-# macos 编译 tensorflow1.12 版本记录
+# build tensorflow from source
+  
+记录 mac osx 环境下构建 tensorflow 源码的过程  
+  
 ## 准备工作
   
 1、下载 tensorflow1.12 源码  
@@ -24,7 +27,27 @@
   
 `check_bazel_version_at_least("0.15.0") -> check_bazel_version_at_least("0.14.0")`  
   
-## 编译
-  
+## 编译&安装
+
+1、编译  
+
+保证编译的最小依赖，全部填 `n`  
+
 `./configure`  
 `bazel build --verbose_failures --config=opt //tensorflow/tools/pip_package:build_pip_package`    
+  
+2、生成 whl
+  
+`bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg`  
+  
+生成文件 `eg:/tmp/tensorflow_pkg/tensorflow-1.12.3-cp27-cp27m-macosx_10_16_x86_64.whl`  
+  
+3、安装 tensorflow1.12  
+  
+安装前 check 环境 `python2.7 and mac version: 10.16 x86.64`  
+  
+`python -m pip install /tmp/tensorflow_pkg/tensorflow-1.12.3-cp27-cp27m-macosx_10_16_x86_64.whl`  
+  
+安装所有缺失的依赖 `pip install XXX or conda install XXX`  
+  
+If success, Congratulations!  
