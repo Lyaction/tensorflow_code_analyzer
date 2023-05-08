@@ -21,7 +21,6 @@ from tensorflow.python.ops import gen_math_ops
 from tensorflow.python.keras import activations
 from tensorflow.python.keras import initializers
 from tensorflow.python.keras import regularizers
-from tensorflow.python.keras import initializers
 from tensorflow.python.keras.utils import tf_utils
 from tensorflow.python.keras.engine.base_layer import Layer
 
@@ -32,14 +31,14 @@ class FeatureSelection(Layer):
 
   def __init__(self,
                embedding,
-               kernel_regularizer=None,
+               l1=0.1,
                init_min=0.1,
                init_max=0.9,
                **kwargs):
     super(FeatureSelection, self).__init__(**kwargs)
     self.embedding = int(embedding)
     self.initializer = initializers.RandomUniform(minval=0.1, maxval=0.9)
-    self.regularizer = regularizers.get(kernel_regularizer)
+    self.regularizer = regularizers.L1L2(l1=l1)
 
   def build(self, input_shape):
     input_shape = tensor_shape.TensorShape(input_shape)
@@ -98,12 +97,17 @@ def feature_selection(embedding_dims, inputs, training=True):
 if __name__ == '__main__':
     fs = FeatureSelection(2)
     x = random_ops.random_uniform([4, 10])
-    y = fs(x, training=False)
+    y = fs(x, training=True)
+    loss = fs.losses
+    check = regularizers.L1L2(l1=0.1)(fs.trainable_weights)
+
     from tensorflow.python.training import monitored_session
     with monitored_session.MonitoredTrainingSession() as sess:
-        outs = sess.run([x, fs.trainable_weights, fs.retain_prob, fs.drop_prob, y])
+        outs = sess.run([x, fs.trainable_weights, fs.retain_prob, fs.drop_prob, y, loss, check])
         print("inputs: ", outs[0])
         print("trainable_weights: ", outs[1])
         print("retain_prob: ", outs[2])
         print("drop_prob: ", outs[3])
         print("outputs: ", outs[4])
+        print("losses: ", outs[5])
+        print("loss_check: ", outs[6])
