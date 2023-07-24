@@ -47,7 +47,7 @@ $$\frac{\partial}{\lambda_{i}}(E_{q(\mathbf{z})}[\log{p(\mathbf{z})}]-E_{q(\math
 $$z=sigmoid(\frac{1}{t}(\log{p}-\log(1-p)+\log{\mu}-\log(1-\mu)))$$
 ## 实验
 ### 人工构造样本
-### 卧龙广告样本
+### 广告样本
 ## 引用
 [1] A bayesian encourages dropout.  
 [2] The concrete distribution: A continuous relaxation of discrete random variables.   
