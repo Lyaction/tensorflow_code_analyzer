@@ -47,7 +47,11 @@ $$\frac{\partial}{\lambda_{i}}(E_{q(\mathbf{z})}[\log{p(\mathbf{z})}]-E_{q(\math
 $$z=sigmoid(\frac{1}{t}(\log{p}-\log(1-p)+\log{\mu}-\log(1-\mu)))$$
 ## 实验
 ### 人工构造样本
+ 预设每条样本 11 维特征，通过正负样本下特征分布的 KL 散度值的差异构造 100 万人工样本。
+ ![image](https://github.com/Lyaction/tensorflow_code_analyzer/assets/26648634/874011b7-70e8-4900-9891-077d1a3095b2)
 ### 广告样本
+![image](https://github.com/Lyaction/tensorflow_code_analyzer/assets/26648634/7b4bbc60-aae6-416c-a0a4-3f31e140cc53)
+
 ## 引用
 [1] A bayesian encourages dropout.  
 [2] The concrete distribution: A continuous relaxation of discrete random variables.   
