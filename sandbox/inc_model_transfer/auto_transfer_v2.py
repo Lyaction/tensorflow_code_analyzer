@@ -61,6 +61,7 @@ class layer_transfer():
         return tf.matmul(inputs, self.kernel)
 
     def after_session(self, session):
+        sess.run(self.extra_init_op)
         sess.run(self.init_op)
 
     def scaffold(self):
@@ -71,8 +72,10 @@ class layer_transfer():
         print(var_list)
         print(init_list)
         saver = tf.train.Saver(var_list=var_list)
-        init_op = tf.variables_initializer(init_list)
-        return tf.train.Scaffold(saver=saver, init_op=init_op)
+        self.extra_init_op = tf.variables_initializer(init_list)
+        ready_op = tf.constant([], name='ready_op')
+        ready_for_local_init_op = tf.constant([], name='ready_for_local_init_op')
+        return tf.train.Scaffold(saver=saver, ready_op=ready_op, ready_for_local_init_op=ready_for_local_init_op)
 
 
 # 定义新模型

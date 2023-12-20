@@ -23,4 +23,4 @@ with tf.train.MonitoredTrainingSession() as sess:
     print(tf.trainable_variables())
     print(sess.run(tf.trainable_variables()))
     print(sess.run(global_step))
-    saver1.save(get_session(sess), 'model/model1.ckpt')
+    saver1.save(get_session(sess), 'model/summary/model.ckpt')
