@@ -6,7 +6,7 @@
 ### 训练
 1. 预设训练步数 $t$ ,神经元丢弃率 $p$ ，随机初始化模型参数 $\theta_{0}$ 
 2. 随机采样 $(\mathbf{x_{\mathrm{t}}},y_{t})$ , 随机掩码 $\mathbf{z}_{t}\sim{Bernoulli(p)}$
-3. 随机梯度更新公式如下
+3. 随机梯度更新公式如下  
    $$\theta_{t+1}=\theta_{t}+\eta_{t}\frac{\partial{\log{p(y_{t}|\mathbf{x_{\mathrm{t}}},\mathbf{z}_{t},\theta)}}}{\partial{\theta}}$$
 4. $t=t+1$ ,回到步骤二
 ### 预估
