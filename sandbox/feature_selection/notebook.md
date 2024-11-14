@@ -10,9 +10,9 @@
    $$\theta_{t+1}=\theta_{t}+\eta_{t}\frac{\partial{\log{p(y_{t}|\mathbf{x_{\mathrm{t}}},\mathbf{z}_{t},\theta)}}}{\partial{\theta}}$$
 4. $t=t+1$ ,回到步骤二
 ### 预估
-假设 $\mathbf{z}$ 是一个 $m$ 维的向量，则 $2^{m}$ 个模型的输出的期望作为预估值，即：
+假设 $\mathbf{z}$ 是一个 $m$ 维的向量，则 $2^{m}$ 个模型的输出的期望作为预估值，即：  
 $$E_{p(\mathbf{z})}[y(\mathbf{x};\mathbf{z},\theta)]\approx{y(\mathbf{x}^*;E_{p(\mathbf{z})}[\mathbf{z}],c)}$$
-Keras 中的实现是：学习阶段 dropout 层丢弃神经元，剩余神经元乘以系数 $1/(1-p)$ 进行还原,预估时如下： 
+Keras 中的实现是：学习阶段 dropout 层丢弃神经元，剩余神经元乘以系数 $1/(1-p)$ 进行还原,预估时如下：  
 $$y(\mathbf{x};\mathbf{z}=\mathbf{1},\theta)$$
 ## 变分推断（Variational Inference）
 使用简单分布拟合贝叶斯模型中的复杂后验，衡量指标为 KL 散度
